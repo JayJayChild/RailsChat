@@ -8,6 +8,10 @@ gem 'devise'
 gem 'mailboxer'
 gem 'gravatar_image_tag'
 
+#making conversation
+gem 'chosen-rails'
+gem 'jquery-turbolinks'
+
 #strong prarams problem with devise
 gem 'strong_parameters'
 

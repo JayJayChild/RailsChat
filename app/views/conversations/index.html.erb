@@ -2,8 +2,37 @@
 
 <p><%= link_to 'Start conversation', new_message_path, class: 'btn btn-lg btn-primary' %></p>
 
-<ul class="list_group">
-	<%= render partial: 'conversations/conversation', collection: @conversations %>
-</ul>
+<% page_header "Your Conversations" %>
+ 
+<!-- tab things, they're awesome -->
+<div class="row">
+  <div class="col-sm-3">
+    <ul class="nav nav-pills nav-stacked">
+      <%= mailbox_section 'inbox', @box %>
+      <%= mailbox_section 'sent', @box %>
+      <%= mailbox_section 'trash', @box %>
+    </ul>
+  </div>
 
-<%= will_paginate %>
+  <!-- this working part isn't in the tutorial -->
+  <div class="col-sm-9">
+  	<% if @box == 'trash' %>
+    	<p><%= link_to 'Empty trash', empty_trash_conversations_path, class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %></p>
+
+    	<ul class="list-group">
+    		<%= render partial: 'conversations/conversation', collection: @trash %>
+ 		</ul>
+  	<% elsif @box == 'inbox' %>
+
+	  	<ul class="list-group">
+	    	<%= render partial: 'conversations/conversation', collection: @inbox %>
+	 	</ul>
+	 <% elsif @box == 'sent' %>
+	 	<ul class="list-group">
+	    	<%= render partial: 'conversations/conversation', collection: @sent %>
+	 	</ul>
+	 <% end %>
+ 
+  	<%= will_paginate %>
+  </div>
+</div>

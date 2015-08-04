@@ -1,0 +1,13 @@
+@import 'chosen';
+@import 'bootstrap';
+
+.alert-notice {
+ 	@extend .alert-success;
+}
+
+.messages {
+  	max-height: 400px;
+  	overflow-y: auto;
+  	margin-bottom: 1em;
+  	margin-top: 1em;
+}
